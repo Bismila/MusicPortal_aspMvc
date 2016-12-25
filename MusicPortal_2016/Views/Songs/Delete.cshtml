@@ -1,0 +1,68 @@
+﻿@model MusicPortal_2016.Models.Songs
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section MenuForAdminAndUsers
+    {
+    @if (@Session["Login"].ToString() == "admin")
+    {
+        <li>@Html.ActionLink("Вся музыка", "Index", "Songs")</li>
+    }
+    else
+    {
+        <li>@Html.ActionLink("Вся музыка", "LoggedIn", "Users")</li>
+
+    }
+    <li class="dropdown" id="dropMenuGenre">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Жанры <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+            <li>@Html.ActionLink("Classic", "Index", "GenreForMenu", new { genre = "Classic" }, null)</li>
+            <li>@Html.ActionLink("Chillout", "Index", "GenreForMenu", new { genre = "Chillout" }, null)</li>
+            <li>@Html.ActionLink("Lounge", "Index", "GenreForMenu", new { genre = "Lounge" }, null)</li>
+            <li>@Html.ActionLink("House", "Index", "GenreForMenu", new { genre = "House" }, null)</li>
+            <li>@Html.ActionLink("Mantra", "Index", "GenreForMenu", new { genre = "Mantra" }, null)</li>
+            <li class="divider"></li>
+            <li>@Html.ActionLink("Trance", "Index", "GenreForMenu", new { genre = "Trance" }, null)</li>
+            <li>@Html.ActionLink("Rock", "Index", "GenreForMenu", new { genre = "Rock" }, null)</li>
+            <li>@Html.ActionLink("Pop", "Index", "GenreForMenu", new { genre = "Pop" }, null)</li>
+            <li>@Html.ActionLink("Russian", "Index", "GenreForMenu", new { genre = "Russian" }, null)</li>
+        </ul>
+    </li>
+}
+<h2 class="col-md-offset-4">Удалить трэк</h2>
+
+<h3 class="col-md-offset-3">Вы действительно хотите удалить этот трэк?</h3>
+<hr />
+
+<div>
+    <dl class="dl-horizontal col-md-offset-3">
+        <dt>
+            @Html.LabelFor(model => model.Name,"Название:")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.Genre.Name,"Жанр:")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Genre.Name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color col-md-offset-4">
+            <input type="submit" value="Удалить" class="btn btn-default" /> |
+            @Html.ActionLink("Назад к списку трэков", "Index")
+        </div>
+    }
+</div>

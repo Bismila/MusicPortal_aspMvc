@@ -1,0 +1,168 @@
+﻿body {
+    padding-top: 5px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 380px;
+}
+
+.formCenter {
+  display: inline-block;
+  float: none;
+  vertical-align: middle;
+}
+
+/*ЦВЕТ И ОТСТУП СНИЗУ ДЛЯ БЛОКОВ*/
+.head-block, .top-menu, .top-material, .left-sidebar, .content {
+    background: #ccc;
+    margin-bottom: 1px;
+}
+
+/*ВЫСОТА ШАПКИ*/
+
+#header-music-portal {
+    height: 300px;
+    margin-top: -1.7%;
+    background: url(/img/m1.jpg)left center no-repeat;
+}
+
+#logo-music-portal {
+    margin-bottom: 6%;
+    margin-top: 4%;
+    margin-left: 4%;
+    font-weight: bold;
+    font-size: 4.5em;
+}
+
+#first-slide img, #second-slide img, #third-slide img {
+    height: 300px;
+}
+
+.slider-for-h3 {
+    color: #8A2BE2;
+    font-weight: bold;
+    font-size: 4em;
+}
+.slider-for-h1 {
+     color: #8A2BE2;
+    font-weight: bold;
+    font-size: 4em;
+    margin-left: -10%;
+}
+.slider-for-p {
+    color: white;
+    border: 1px solid #8A2BE2;
+    background-color: #8A2BE2;
+    text-align: center;
+    padding: 5px;
+    border-radius: 5px;
+    width: 30%;
+    margin-top: 10px;
+    margin-left: 33%;
+}
+.modal-size {
+    width: 500px;
+}
+.head-block {
+    height: 300px;
+    background: url(/img/m1.jpg)left center no-repeat;
+}
+
+div .menuHead {
+    position: relative;
+    color: #FFF5EE;
+    font-size: 1em;
+    margin-left: 8%;
+    margin-top: 0%;
+    float: right;
+    text-align: right;
+}
+
+/*#logo h1 {
+    padding-top: 7.5%;
+    padding-left: 1.5%;
+    font-size: 5em;
+    font-weight: bold;
+    text-align: left;
+    margin-top: 30px;
+}*/
+
+div.menuHead a {
+    font-weight: bold;
+    color: #FFF5EE;
+    text-decoration: none;
+    padding: 2%;
+}
+
+    div .menuHead a:hover {
+        color: #BA55D3;
+        border: 0px solid white;
+        padding: 2%;
+        background-color: white;
+        -webkit-transition: all .6s ease; /*это значит что ссылки будут менять свой цвет плавно в браузере Safari*/
+        -moz-transition: all .6s ease; /*это значит что ссылки будут менять свой цвет плавно в браузере Mozilla*/
+        -o-transition: all .6s ease; /*это значит что ссылки будут менять свой цвет плавно в браузере Opera*/
+        transition: all .6s ease; /*это значит что ссылки будут менять свой цвет плавно */
+    }
+
+/*ВЫСОТА МЕНЮ*/
+.top-menu {
+    height: 30px;
+    background: #8A2BE2;
+    color: white;
+}
+
+    .top-menu div#menuTracks,
+    .top-menu div#menuGenre,
+    .top-menu div#menuContacts {
+        padding-left: 2%;
+        padding-right: 5%;
+        margin-bottom: 0;
+        margin-top: 0.3em;
+        display: inline-block;
+        font-weight: bold;
+        color: #FFF5EE;
+    }
+
+        .top-menu div#menuTracks:hover,
+        .top-menu div#menuGenre:hover,
+        .top-menu div#menuContacts:hover {
+            border: 0px solid white;
+            border-radius: 2px;
+            background-color: white;
+            color: #8A2BE2;
+            -webkit-transition: all .6s ease;
+            -moz-transition: all .6s ease;
+            -o-transition: all .6s ease;
+            transition: all .6s ease;
+        }
+
+/*ВЫСОТА БЛОКА ВАЖНЫЕ МАТЕРИАЛЫ*/
+.top-material {
+    height: 200px;
+}
+/*ВЫСОТА САЙДБАРА И БЛОКА КОНТЕНТ*/
+.left-sidebar, .content {
+    height: 300px;
+}
+/*ГРАНИЦА У КОНТЕНТА*/
+.content {
+    border-left: 1px solid #fff;
+}

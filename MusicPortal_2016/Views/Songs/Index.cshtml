@@ -1,0 +1,89 @@
+﻿@model IEnumerable<MusicPortal_2016.Models.Songs>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section MenuForAdminAndUsers
+    {
+    @if (@Session["Login"].ToString() == "admin")
+    {
+        <li>@Html.ActionLink("Вся музыка", "Index", "Songs")</li>
+    }
+    else
+    {
+        <li>@Html.ActionLink("Вся музыка", "LoggedIn", "Users")</li>
+
+    }
+    <li class="dropdown" id="dropMenuGenre">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Жанры <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+            <li>@Html.ActionLink("Classic", "Index", "GenreForMenu", new { genre = "Classic" }, null)</li>
+            <li>@Html.ActionLink("Chillout", "Index", "GenreForMenu", new { genre = "Chillout" }, null)</li>
+            <li>@Html.ActionLink("Lounge", "Index", "GenreForMenu", new { genre = "Lounge" }, null)</li>
+            <li>@Html.ActionLink("House", "Index", "GenreForMenu", new { genre = "House" }, null)</li>
+            <li>@Html.ActionLink("Mantra", "Index", "GenreForMenu", new { genre = "Mantra" }, null)</li>
+            <li class="divider"></li>
+            <li>@Html.ActionLink("Trance", "Index", "GenreForMenu", new { genre = "Trance" }, null)</li>
+            <li>@Html.ActionLink("Rock", "Index", "GenreForMenu", new { genre = "Rock" }, null)</li>
+            <li>@Html.ActionLink("Pop", "Index", "GenreForMenu", new { genre = "Pop" }, null)</li>
+            <li>@Html.ActionLink("Russian", "Index", "GenreForMenu", new { genre = "Russian" }, null)</li>
+        </ul>
+    </li>
+}
+<h2 class="col-md-offset-4">Список всех треков</h2>
+
+<p class="col-md-offset-5">
+    @Html.ActionLink("Загрузить новый трек", "Create")
+</p>
+
+<table class="table">
+    <tr>
+        <th style="text-align: center">
+            <label>Название трэка</label>
+        </th>
+        <th>
+            <label for="">Жанр</label>
+        </th>
+        <th style="text-align: center">
+            <label for="">Прослушать трек</label>
+        </th>
+        <th>
+            <label for=""></label>
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Genre.Name)
+
+            </td>
+            <td>
+                <audio controls>
+                    <source src='@Url.Content(@item.UrlRelativeAdress)' type="audio/ogg" />
+                    <source src='@Url.Content(@item.UrlRelativeAdress)' type="audio/mpeg" />
+                    <source src='@Url.Content(@item.UrlRelativeAdress)' type="audio/mp3" />
+                </audio>
+            </td>
+            <td>
+
+                @Html.ActionLink("Скачать", "Download", new { id = item.Id }) |
+
+                @Html.ActionLink("Редактировать", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Подробнее", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+<div>
+    @Html.ActionLink("Назад к меню", "IndexAdmin", "Users")
+</div>
+
+@*@(Session["Login"].ToString() == "admin" ? Html.ActionLink("Назад к списку трэков", "IndexAdmin", "Users") : Html.ActionLink("Назад к списку трэков", "LoggedIn", "Users"))*@

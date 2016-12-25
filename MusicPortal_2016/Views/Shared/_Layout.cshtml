@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Music Portal 2016</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-static-top" id="menu-music-portal">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#responsive-menu">
+                    <span class="sr-only">Открыть навигацию</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                    <p>MP <i class="glyphicon glyphicon-heart"></i> 2016</p>
+                </a>
+            </div>
+            <div class="collapse navbar-collapse" id="responsive-menu">
+                <ul class="nav navbar-nav">
+                    <li>
+                        @Html.ActionLink("Вход", "Login", "Users")
+                    </li>
+                    <li>
+                        @Html.ActionLink("Регистрация", "Registration", "Users")
+                    </li>
+                    @RenderSection("MenuForAdminAndUsers", false)
+                    <li><a href="#">Контакты</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="container">
+        <div class="row" id="header-music-portal">
+            @*Устанавливаем слайды в шапке*@
+            <div id="carousel" class="carousel slide">
+                @*Индикаторы слайдов*@
+                <ol class="carousel-indicators">
+                    <li class="active" data-target="#carousel" data-slide-to="0"></li>
+                    <li data-target="#carousel" data-slide-to="1"></li>
+                    <li data-target="#carousel" data-slide-to="2"></li>
+                </ol>
+                @*Слайды*@
+                <div class="carousel-inner">
+                    <div class="item active" id="first-slide">
+                        <img src="/img/Guitar.png" alt="" />
+                        <div class="carousel-caption">
+                            <h1 class="slider-for-h1">Music Portal 2016</h1>
+                            <p class="slider-for-p">Musical snacks for you!</p>
+                        </div>
+                    </div>
+                    <div class="item " id="second-slide">
+                        <img src="/img/m3.png" alt="" />
+                        <div class="carousel-caption">
+                            <h3 class="slider-for-h3">Music Portal 2016</h3>
+                            <p class="slider-for-p">We have music for the soul!</p>
+                        </div>
+                    </div>
+                    <div class="item " id="third-slide">
+                        <img src="/img/m4.png" alt="" />
+                        <div class="carousel-caption">
+                            <h3 class="slider-for-h3">Music Portal 2016</h3>
+                            <p class="slider-for-p">Seek, download and share music of your heart!</p>
+                        </div>
+                    </div>
+                </div>
+                @*Стрелки переключения слайдов*@
+                <a href="#carousel" class="left carousel-control" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                <a href="#carousel" class="right carousel-control" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Все права защищены</p>
+        </footer>
+    </div>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    <script src="~/Scripts/jquery-1.10.2.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/jquery-1.10.2.intellisense.js" type="text/javascript"></script>
+    @Scripts.Render("~/bundles/bootstrap")
+
+
+    <script src="~/Scripts/bootstrap.js" type="text/javascript"></script>
+    <script src="~/Scripts/bootstrap.min.js" type="text/javascript"></script>
+
+
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

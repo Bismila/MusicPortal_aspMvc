@@ -1,0 +1,87 @@
+﻿@model MusicPortal_2016.Models.Songs
+
+@{
+    ViewBag.Title = "Загрузить трек";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section MenuForAdminAndUsers
+    {
+   @if (@Session["Login"].ToString() == "admin")
+    {
+    <li>@Html.ActionLink("Вся музыка", "Index", "Songs")</li>
+   }
+   else
+   {
+    <li>@Html.ActionLink("Вся музыка", "LoggedIn", "Users")</li>
+
+   }
+    <li class="dropdown" id="dropMenuGenre">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Жанры <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+            <li>@Html.ActionLink("Classic", "Index", "GenreForMenu", new { genre = "Classic" }, null)</li>
+            <li>@Html.ActionLink("Chillout", "Index", "GenreForMenu", new { genre = "Chillout" }, null)</li>
+            <li>@Html.ActionLink("Lounge", "Index", "GenreForMenu", new { genre = "Lounge" }, null)</li>
+            <li>@Html.ActionLink("House", "Index", "GenreForMenu", new { genre = "House" }, null)</li>
+            <li>@Html.ActionLink("Mantra", "Index", "GenreForMenu", new { genre = "Mantra" }, null)</li>
+            <li class="divider"></li>
+            <li>@Html.ActionLink("Trance", "Index", "GenreForMenu", new { genre = "Trance" }, null)</li>
+            <li>@Html.ActionLink("Rock", "Index", "GenreForMenu", new { genre = "Rock" }, null)</li>
+            <li>@Html.ActionLink("Pop", "Index", "GenreForMenu", new { genre = "Pop" }, null)</li>
+            <li>@Html.ActionLink("Russian", "Index", "GenreForMenu", new { genre = "Russian" }, null)</li>
+        </ul>
+    </li>
+}
+<div class="col-md-offset-4">
+    <h2>Загрузить новый трек</h2>
+</div>
+@using (Html.BeginForm("Create", "Songs", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <!--
+    Для передачи больших файлов используется MIME-тип данных multipart/form-data;
+    при формировании формы с несколькими элементами загрузки файлов необходимо формировать
+    имена элементов (атрибуты name) с индексаторами [№]. Это соглашение ASP.NET MVC,
+    которое позволяет автоматически получить массив элементов при работе с действиями контроллеров.
+        col-md-4, col-md-offset-4
+    -->
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @if (ViewBag.Message != null)
+        {
+            <div class="form-group">
+                <div class="col-md-10">@ViewBag.Message</div>
+            </div>
+        }
+        <div class="form-group">
+            <div class="col-md-offset-4">
+                <input type="file" name="file" /><br />
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, "Название:", htmlAttributes: new { @class = "control-label col-md-4" })
+            <div class="col-md-offset-4">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="editor-field col-md-offset-4">
+            @Html.DropDownListFor(model => model.GenreId, ViewBag.ListGenre as SelectList, "---Выберите жанр---")
+            @Html.ValidationMessageFor(model => model.GenreId, "", new { @class = "text-danger" })
+
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-4" style="margin-top: 1%">
+                <input type="submit" value="Загрузить" class="btn btn-default" />
+            </div>
+        </div>
+
+    </div>
+}
+
+<div>
+    @(Session["Login"].ToString() == "admin" ? Html.ActionLink("Назад к списку трэков", "IndexAdmin","Users") : Html.ActionLink("Назад к списку трэков", "LoggedIn", "Users"))
+</div>
